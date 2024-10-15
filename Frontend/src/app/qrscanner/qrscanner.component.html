@@ -1,0 +1,11 @@
+<div class="container">
+  <h2>Escanear código QR</h2>
+  <div id="qr-reader" style="width: 500px"></div>
+
+  <h3>Información del Pez</h3>
+  <div *ngIf="fishInfo">
+    <p><strong>Referencia:</strong> {{ fishInfo.reference }}</p>
+    <p><strong>Tanque:</strong> {{ fishInfo.tank }}</p>
+    <p><strong>Stock:</strong> {{ fishInfo.stock }}</p>
+  </div>
+</div>
