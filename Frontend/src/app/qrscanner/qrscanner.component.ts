@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import { FishStockService } from '../services/fish-stock.service';
 import { CommonModule } from '@angular/common';
@@ -10,11 +10,11 @@ import { HttpClientModule } from '@angular/common/http';
   templateUrl: './qrscanner.component.html',
   styleUrls: ['./qrscanner.component.css'],
   imports: [CommonModule, HttpClientModule],
+  providers: [FishStockService], // Asegúrate de agregar FishStockService aquí
 })
 export class QrScannerComponent implements OnInit {
   fishInfo: any = {}; // Almacenar la información recibida del backend
 
-  // Inyectar FishStockService
   constructor(private fishStockService: FishStockService) {}
 
   ngOnInit(): void {
@@ -46,7 +46,7 @@ export class QrScannerComponent implements OnInit {
         this.fishInfo = data; // Guardar los datos recibidos
         console.log('Datos del pez:', this.fishInfo);
       },
-      (error) => {
+      (error: any) => {
         console.error('Error al obtener la información del pez:', error);
       }
     );
